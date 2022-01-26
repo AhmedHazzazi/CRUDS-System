@@ -22,7 +22,12 @@ function getTotal()
 }
 
 // create product
-let dataPro = [];
+let dataPro;
+if (localStorage.product != null) {
+    dataPro = JSON.parse(localStorage.product)
+} else {
+    dataPro = [];
+}
 submit.onclick = function() {
     let newPro = {
         title : title.value,
@@ -34,4 +39,7 @@ submit.onclick = function() {
         count : count.value,
         category : category.value,
     }
+    dataPro.push(newPro);
+    localStorage.setItem('product', JSON.stringify(dataPro))
+    console.log(dataPro);
 }
